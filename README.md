@@ -1,0 +1,2 @@
+# SSM
+Django Store App
