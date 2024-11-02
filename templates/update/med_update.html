@@ -1,0 +1,106 @@
+{% extends 'dynamic/index.html' %}
+{% block content %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'cssfiles/add_form.css'%}">
+
+    <!--code-->
+<div class="container-fluid bg-dark text-danger py-3">
+  <header class="text-center">
+    <h1 class="display-6">Medicine Update Form</h1>
+  </header>
+</div>
+<br><br>
+
+  <form action="/update_medicine/{{id.id}}"  method="POST" class="form-row">
+    {%csrf_token%}
+    
+    <!-- Medicine Name -->
+    <div class="form-group col-md-6">
+      <label for="medicine_name" class="form-label">Medicine Name</label>
+      <input type="text" value="{{id.medicine_name}}" class="form-control" id="medicine_name" name="medicine_name" >
+    </div>
+    <!-- Medicine Combination -->
+    <div class="form-group col-md-6">
+      <label for="combination" class="form-label">Combination</label>
+      <input type="text" value="{{id.med_combination}}" class="form-control" id="combination" name="combination">
+      <br><br>
+    </div>
+    <!-- DEALER Name -->
+    <div class="form-group col-md-6">
+      <label for="med_dealer" class="form-label">Pharma</label>
+      <select id="med_dealer" class="form-control" name="med_dealer">
+        <option selected>{{id.med_dealer}}</option>
+        {% for data in dealers %}
+        {% if data.d_category == 'Medicine' %}
+        <option>{{data.dealer}}</option>
+        {% endif %}
+        {% endfor %}
+        
+      </select>
+    </div>
+
+    <!--CATEGORY -->
+    <div class="col-md-6">
+      <label for="med_category" class="form-label">Category</label>
+      <select id="med_category"  class="form-control" name="med_category">
+        <option>{{id.med_category}}</option>
+        <option>Anti-Biotic</option>
+        <option>Pain</option>
+        <option>Sugar</option>
+        <option>Pressure</option>
+        <option>Anti-Fungal</option>
+        <option>Cardiac</option>
+      </select><br><br>
+    </div>
+    <!--<div class="col-12">
+      <label for="med_dealer2" class="form-label">Address 2</label>
+      <input type="text" class="form-control" id="med_dealer2" placeholder="Apartment, studio, or floor">
+    </div> -->
+    <!-- MRP Price -->
+    <div class="col-md-2">
+      <label for="med_mrp" class="form-label">MRP</label>
+      <input type="number" value={{id.med_mrp}} class="form-control" id="med_mrp" name="med_mrp">
+    </div>
+    <!-- Dealer Price -->
+    <div class="col-md-2">
+      <label for="med_up" class="form-label">Unit Price</label>
+      <input type="number" value={{id.med_up}} class="form-control" id="med_up" name="med_up">
+    </div>
+    <!--GST -->
+    <div class="col-md-2">
+      <label for="med_gst" class="form-label">GST</label>
+      <select id="med_gst"  class="form-control" name="med_gst">
+        <option selected>{{id.med_gst}}</option>
+        <option>18</option>
+        <option>3</option>
+        <option>5</option>
+        <option>12</option>
+      </select>
+    </div>
+    <!-- Quantity -->
+    <div class="col-md-2">
+      <label for="med_qty" class="form-label">Quantity</label>
+      <select id="med_qty"  class="form-control" name="med_qty">
+        <option selected>{{id.med_qty}}</option>
+        <option>1</option>
+        <option>10</option>
+        <option>15</option>
+        <option>20</option>
+        <option>30</option>
+      </select>
+    </div>
+    <!--Unit -->
+    <div class="col-md-2">
+      <label for="med_unit" class="form-label">Unit</label>
+      <select id="med_unit" class="form-control" name="med_unit">
+        <option selected>{{id.med_unit}}</option>
+        <option>strip</option>
+        <option>pcs</option>
+      </select>
+    </div>
+     
+    <!-- Button -->
+      <button type="submit" class="btn btn-primary">Update</button>
+  </form>
+
+{% endblock %}

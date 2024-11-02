@@ -1,0 +1,107 @@
+{% extends 'dynamic/index.html' %}
+{% block content %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'cssfiles/add_form.css'%}">
+
+    <!--code-->
+<div class="container-fluid bg-dark text-danger py-3">
+  <header class="text-center">
+    <h1 class="display-6">proetable & Dhal Form</h1>
+  </header>
+</div>
+<br><br>
+
+  <form action=""  method="POST" class="form-row">
+    {%csrf_token%}
+    <!-- proETABLE Name -->
+    <div class="form-group col-md-6">
+      <label for="pro_name" class="form-label">Product Name</label>
+      <input type="text" class="form-control" id="pro_name" name="pro_name" >
+    </div>
+
+    <!-- DEALER Name -->
+    <div class="form-group col-md-6">
+      <label for="pd_name" class="form-label">Dealer Name</label>
+      <select id="pd_name" class="form-control" name="pd_name">
+        {% for data in dealers %}
+        {% if data.d_category != 'Medicine' %}
+        {% if data.d_category != 'Vegetable' %}
+        <option selected>{{data.dealer}}</option>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+
+    <!--CATEGORY -->
+    <div class="col-md-4">
+      <label for="pro_cat" class="form-label">Category</label>
+      <select id="pro_cat" class="form-control" name="pro_cat">
+        <option selected>Stationary</option>
+        <option>Grocery</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label for="pro_type" class="form-label">Product Type</label>
+      <select id="pro_type" class="form-control" name="pro_type">
+        <option selected>Soap</option>
+        <option>Hair Oil</option>
+        <option>Oil</option>
+        <option>Powder</option>
+        <option>Snacks</option>
+        <option>Chocolate</option>
+        <option>Masala</option>
+        <option>Dairy</option>
+        <option>Juice</option>
+        <option>Dry Fruit</option>
+        <option>Plastic cover</option>
+        <option>Plastic</option>
+        <option>Maligai</option>
+        <option>Stationary</option>
+      </select>
+    </div>
+       <!-- MRP Price -->
+    <div class="col-md-3">
+        <label for="pro_mrp" class="form-label">MRP</label>
+        <input type="number" class="form-control" id="pro_mrp" name="pro_mrp">
+    </div>
+    <!-- Dealer Price -->
+    <div class="col-md-3">
+      <label for="pro_up" class="form-label">Unit Price</label>
+      <input type="number" class="form-control" id="pro_up" name="pro_up">
+    </div>
+        <!--GST -->
+    <div class="col-md-2">
+        <label for="pro_gst" class="form-label">GST</label>
+        <select id="pro_gst" class="form-control" name="pro_gst">
+            <option selected>18</option>
+            <option>9</option>
+            <option>3</option>
+            <option>5</option>
+        </select>
+    </div>
+    <!-- Quantity -->
+    <div class="col-md-2">
+      <label for="pro_qty" class="form-label">Quantity</label>
+      <input type="number" id="pro_qty" class="form-control" name="pro_qty">
+    </div>
+    <!--Unit -->
+    <div class="col-md-3">
+      <label for="pro_unit" class="form-label">Unit</label>
+      <select id="pro_unit" class="form-control" name="pro_unit">
+        <option selected>Kg</option>
+        <option>g</option>
+        <option>L</option>
+        <option>ml</option>
+        <option>pck</option>
+        <option>saram</option>
+        <option>bottle</option>
+        <option>nos</option>
+      </select>
+    </div>
+ 
+    <!-- Button -->
+    <button type="submit" class="btn btn-primary"> Add </button>
+  </form>
+
+{% endblock %}"

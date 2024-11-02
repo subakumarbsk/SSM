@@ -1,0 +1,137 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    
+</head>
+<body >
+
+    <!-- HEADER  -->
+    {% include 'includes/header.html' %}
+
+    <!-- DYNAMIC CONTENT -->
+
+    {% block content %}
+    {% endblock %}
+    
+    <!-- footer  -->
+    {% include 'includes/footer.html' %}
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- FILTER -->
+  <script>
+    // Filter
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+    // Filter Orders
+    $(document).ready(function(){
+      $("#myInput1").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable1 tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+ // Add Total Bill & Total Paid Amount
+    $(document).ready(function(){
+      var pa_amt;
+      var pen_amt;
+      var tot_amt;
+      var t1 = 0;
+      var t2 = 0;
+      var t3 = 0;
+      $('td:nth-child(6)').each(function() { 
+        tot_amt = $(this).html();
+        t1+=parseInt(tot_amt);
+      $('#total').text("Total Bill Amount" + "="+t1);
+      $('#total_paid').text("Total Bill Amount" + "="+total);
+      });
+      $('td:nth-child(7)').each(function() { 
+        pa_amt = $(this).html();
+        t2+=parseInt(pa_amt);
+      $('#total_paid').text("Total Amount Paid" + "="+t2);
+      });
+    });
+    $(document).ready(function(){
+      var indicidual;
+      var total = 0;
+      $('td:nth-child(6)').each(function() { 
+        indicidual = $(this).html();
+        total+=parseInt(indicidual);
+        final = total;
+      //$('#total_paid').text("Total Paid Amount" + "="+total);
+      });
+    });
+ // Serial Number
+
+    $(document).ready(function(){
+      var sl_no = 0;
+      $('td:nth-child(1)').each(function() { 
+        idss = $(this).html();
+        sl_no+=1;
+      $(this).text(sl_no);
+      });
+    });
+
+  // BAlace amount
+  $(document).ready(function(){
+    var final_tot = 0;
+    var total= 0;
+      $('tr').each(function(){
+        var b_amt = 0;
+        var tba = $('td:nth-child(5)').html();
+        $(this).find('.t_amt').each(function(){
+          var t_amt = $(this).text()
+          b_amt = parseInt(t_amt);
+        });
+        $(this).find('.p_amt').each(function(){
+          var p_amt = $(this).text()
+          b_amt =b_amt - parseInt(p_amt);
+          total+=b_amt;
+        });
+        $(this).find('.b_amt').text(b_amt);
+        //final_tot+=total;
+      });
+     // var pen_amt;
+      //var t3 =0;
+      //$('td:nth-child(8)').each(function() { 
+        //pen_amt = $(this).html();
+        //t3+=parseInt(pen_amt);
+      $('#total_pending').text("Total Pending Amount" + "="+total);
+      //});
+    });
+ // Add Order Amount
+
+// Multiply Qty Aand Mrp and tota; order value
+
+  $(document).ready(function(){
+    var tot= 0;
+      $('tr').each(function(){
+        var b_amt = 0;
+        $(this).find('.qty').each(function(){
+          var qty = $(this).text()
+          b_amt = parseInt(qty);
+        });
+        $(this).find('.up').each(function(){
+          var p_amt = $(this).text()
+          b_amt =b_amt * parseInt(p_amt);
+          tot+=b_amt;
+        });
+        $(this).find('.o_amt').text(b_amt);
+        //final_tot+=total;
+      });
+      $('#ord_amt').html('Rs. ' +tot);
+    });
+</script>
+ <!-- -->   
+</html>

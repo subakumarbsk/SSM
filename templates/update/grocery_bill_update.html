@@ -1,0 +1,76 @@
+{% extends 'dynamic/index.html' %}
+{% block content %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'cssfiles/add_form.css'%}">
+
+    <!--code-->
+<div class="container-fluid bg-dark text-danger py-3">
+  <header class="text-center">
+    <h1 class="display-6">Update Product Bill </h1>
+  </header>
+</div>
+<br><br>
+
+  <form action="/update_product_bill/{{id.id}}"  method="POST" class="form-row">
+    {%csrf_token%}
+
+    <!-- DEALER Name -->
+    <div class="form-group col-md-12">
+      <label for="pd_name" class="form-label">Dealer Name</label>
+      <select id="pd_name" class="form-control" name="pd_name">
+        <option selected>{{id.pro_dealer}}</option>
+        {% for data in dealers %}
+        {% if data.d_category != 'Medicine' %}
+        {% if data.d_category != 'Vegetable' %}
+        <option>{{data.dealer}}</option>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+    <!-- Invoice No-->
+    <div class="col-md-3">
+        <label for="pro_invoice" class="form-label">Invoice No</label>
+        <input type="text" value="{{id.pro_invoice}}" class="form-control" id="pro_invoice" name="pro_invoice">
+      </div>
+    <!-- Invoice Date-->
+    <div class="col-md-3">
+        <label for="pro_invoice_d" class="form-label">Invoice Date</label>
+        <input type="date" value='{{id.pro_invoice_d | date:"Y-m-d"}}' class="form-control" id="pro_invoice_d" name="pro_invoice_d">
+      </div>     
+      <!-- Invoice Amount-->
+    <div class="col-md-3">
+        <label for="pro_amt" class="form-label">Invoice Amount</label>
+        <input type="text" value="{{id.pro_amt}}" class="form-control" id="pro_amt" name="pro_amt">
+      </div>
+    <!--CATEGORY -->
+    <div class="col-md-3">
+      <label for="pro_payment" class="form-label">Category</label>
+      <select id="pro_payment" class="form-control" name="pro_payment">
+        <option selected>{{id.pro_payment}}</option>
+        <option>Fully Paid</option>
+        <option>Half Paid</option>
+        <option>Not Paid</option>
+      </select>
+    </div>
+    <!-- Bill No1 Paid AMount-->
+    <div class="col-md-3">
+        <label for="pro_amt1" class="form-label">Paid Amount</label>
+        <input type="number" value="{{id.pro_amt1}}" class="form-control" id="pro_amt1" name="pro_amt1">
+    </div>
+    <!-- Bill No1 -->
+    <div class="col-md-5">
+      <label for="pro_bill_no" class="form-label">Recipt No </label>
+      <input type="text" value="{{id.pro_bill_no}}" class="form-control" id="pro_bill_no" name="pro_bill_no">
+    </div>
+<!-- Bill No1 Date-->
+    <div class="col-md-3">
+        <label for="pro_b1_d" class="form-label">Paid Date</label>
+        <input type="date" value='{{id.pro_b1_d | date:"Y-m-d"}}' class="form-control" id="pro_b1_d" name="pro_b1_d">
+    </div>  
+    
+    <!-- Button -->
+      <button type="submit" class="btn btn-primary">ADD</button>
+  </form>
+
+{% endblock %}

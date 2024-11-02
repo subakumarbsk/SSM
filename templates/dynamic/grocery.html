@@ -1,0 +1,48 @@
+{% extends 'dynamic/index.html' %}
+{% block content %}
+{% load static %}
+
+  <div class="container-fluid bg-dark text-danger py-3">
+    <header class="text-center">
+      <h1 class="display-6">Grocery Prices</h1>
+    </header>
+  </div>
+  <div class="container">
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <br>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Sl.No</th>
+          <th>Product Name</th>
+          <th>Type</th>
+          <th>Dealer</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>Unit</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody id="myTable">
+        {% for data in pro %}
+        {% if data.pro_cat == 'Grocery'%}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{data.pro_name}}</td>
+          <td>{{data.pro_type}}</td>
+          <td>{{data.pro_up}}</td>
+          <td>{{data.pro_mrp}}</td>
+          <td>{{data.pro_qty}}</td>
+          <td>{{data.pro_unit}}</td>
+          <th><button class="btn btn-info"><a href="update_product/{{data.id}}">Update</a></button></th>
+          <th><button class="btn btn-danger"><a href="delete_product/{{data.id}}">Delete</a></button></th>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+
+{% endblock %}

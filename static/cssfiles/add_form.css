@@ -1,0 +1,34 @@
+form{
+    margin: 10px;
+}
+/* Label */
+.form-label{
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: lighter;
+    font-style: italic;
+}
+/* INput */
+.form-control{
+    height: 50px;
+    font-size: 22px;
+    font-style: italic;
+}
+/* BUTTON */
+.btn{
+    margin: 30px;
+    margin-left: 45%;
+    padding-bottom: 10px;
+    justify-content: center;
+    font-weight: bolder;
+    width: 300px;
+    height: 50px;
+    font-size: 30px;
+    border-radius: 50px;
+}
+.btn:hover{
+    border: solid rgb(35, 244, 56);
+    font-size: 32px;
+    color: white;
+    background-color: rgb(71, 255, 47);
+}

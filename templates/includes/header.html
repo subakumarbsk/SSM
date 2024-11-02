@@ -1,0 +1,68 @@
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'cssfiles/header.css'%}">
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+          </button>
+          <a class="navbar-brand" href="#">SSM</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Add<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="add_medicine">Medicine</a></li>
+                <li><a href="add_product">Grocery</a></li>
+                <li><a href="add_vegetable">Vegetable</a></li>
+                <li><a href="add_dealer">Dealer</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Bill<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="add_medicine_bill">Medicine</a></li>
+                <li><a href="add_product_bill">Grocery</a></li>
+                <li><a href="add_vegetable_bill">Vegetable</a></li>
+                <li><a href="add_ec_bill">EC</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Order<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="medicine_order">Medicine</a></li>
+                <li><a href="grain_order">Grain</a></li>
+                <li><a href="stationary_order">Stationary</a></li>
+                <li><a href="grocery_order">Grocery</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Price<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="medicine_Price">Medicine</a></li>
+                <li><a href="grocery_Price">Grocery</a></li>
+                <li><a href="stationary_Price">Stationary</a></li>
+                <li><a href="grain_Price">Dhal</a></li>
+                <li><a href="vegetable_Price">Vegetable</a></li>
+              </ul>
+            </li>
+            <li><a href="store_bill">Accounts</a></li>
+            <li><a href="dealer_details">Info</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="admin"><span class="glyphicon glyphicon-user"></span>Admin</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+</body>

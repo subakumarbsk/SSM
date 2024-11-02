@@ -1,0 +1,47 @@
+{% extends 'dynamic/index.html' %}
+{% block content %}
+{% load static %}
+
+  <div class="container">
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <br>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Sl.No</th>
+          <th>Medicine Name</th>
+          <th>Combination</th>
+          <th>Dealer</th>
+          <th>Dealer Price</th>
+          <th>GST Percentage</th>
+          <th>Price with GST</th>
+          <th>MRP</th>
+          <th>Qty</th>
+          <th>Unit</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody id="myTable">
+        {% for data in medicine %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{data.medicine_name}}</td>
+          <td>{{data.med_combination}}</td>
+          <td>{{data.med_dealer}}</td>
+          <td>{{data.med_up}}</td>
+          <td>{{data.med_gst}}%</td>
+          <td>{{data.med_u_gst}}</td>
+          <td>{{data.med_mrp}}</td>
+          <td>{{data.med_qty}}</td>
+          <td>{{data.med_unit}}</td>
+          <th><button class="btn btn-info"><a href="update_medicine/{{data.id}}">Update</a></button></th>
+          <th><button class="btn btn-danger"><a href="delete_medicine/{{data.id}}">Delete</a></button></th>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  
+  
+{% endblock %}

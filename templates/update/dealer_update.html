@@ -1,0 +1,65 @@
+{% extends 'dynamic/index.html' %}
+{% block content %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'cssfiles/add_form.css'%}">
+
+    <!--code-->
+<div class="container-fluid bg-dark text-danger py-3">
+  <header class="text-center">
+    <h1 class="display-6">Add Dealer/Supplier </h1>
+  </header>
+</div>
+<br><br>
+
+  <form action=""  method="POST" class="form-row">
+    {%csrf_token%}
+
+    <!-- DEALER Name -->
+    <div class="form-group col-md-12">
+      <label for="dealer" class="form-label">Dealer Name</label>
+      <input id="dealer" class="form-control" name="dealer">
+    </div>
+        <!-- GST No-->
+    <div class="col-md-3">
+        <label for="gst_no" class="form-label">GST No</label>
+        <input type="text" class="form-control" id="gst_no" name="gst_no">
+      </div>
+        <!-- Dealer Date-->
+    <div class="col-md-3">
+        <label for="dd" class="form-label">Add Date</label>
+        <input type="date" class="form-control" id="dd" name="dd">
+      </div>     
+    <!--DEALER CATEGORY -->
+    <div class="col-md-3">
+      <label for="d_category" class="form-label">Category</label>
+      <select id="d_category" class="form-control" name="d_category">
+        <option selected>Medicine</option>
+        <option>Grocery</option>
+        <option>Stationary</option>
+        <option>Vegetable</option>
+        <option>Dhal Items</option>
+        <option>EC</option>
+        <option>All</option>
+      </select>
+    </div>
+    <!-- Address -->
+    <div class="col-md-5">
+      <label for="d_address" class="form-label">Address</label>
+      <input type="text" class="form-control" id="d_address" name="d_address">
+    </div>
+<!-- Mobile No -->
+    <div class="col-md-3">
+        <label for="d_mobile_no" class="form-label">Mobile No</label>
+        <input type="number" class="form-control" id="d_mobile_no" name="d_mobile_no">
+    </div>  
+    <!-- Bill No2 Paid AMount-->
+    <div class="col-md-3">
+        <label for="contact_name" class="form-label">Contact Person ( OPTIONAL )</label>
+        <input type="text" class="form-control" id="contact_name" name="contact_name">
+    </div>
+
+    <!-- Button -->
+      <button type="submit" class="btn btn-primary">Add</button>
+  </form>
+
+{% endblock %}

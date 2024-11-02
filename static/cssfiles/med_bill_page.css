@@ -1,0 +1,12 @@
+header{
+    margin-bottom: 2px;
+    text-align: center;
+}
+label{
+    font-size: 20px;;
+    margin-right: 15px;
+}
+#bill_checkbox{
+    width: 28px;
+    height: 20px;
+}

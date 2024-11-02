@@ -1,0 +1,71 @@
+{% extends 'dynamic/index.html' %}
+{% block content %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'cssfiles/add_form.css'%}">
+
+    <!--code-->
+<div class="container-fluid bg-dark text-danger py-3">
+  <header class="text-center">
+    <h1 class="display-6">Add Grain / Vegetable Bill </h1>
+  </header>
+</div>
+<br><br>
+
+  <form action=""  method="POST" class="form-row">
+    {%csrf_token%}
+
+    <!-- DEALER Name -->
+    <div class="form-group col-md-12">
+      <label for="vd_name" class="form-label">Pharma</label>
+      <select id="vd_name" class="form-control" name="vd_name">
+        {% for data in dealers %}
+        {% if data.d_category != 'Medicine' %}
+        <option selected>{{data.dealer}}</option>
+        {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+    <!-- Invoice No-->
+    <div class="col-md-3">
+        <label for="veg_invoice" class="form-label">Invoice No</label>
+        <input type="text" class="form-control" id="veg_invoice" name="veg_invoice">
+      </div>
+    <!-- Invoice Date-->
+    <div class="col-md-3">
+        <label for="veg_invoice_d" class="form-label">Invoice Date</label>
+        <input type="date" class="form-control" id="veg_invoice_d" name="veg_invoice_d">
+      </div>     
+      <!-- Invoice Amount-->
+    <div class="col-md-3">
+        <label for="veg_amt" class="form-label">Invoice Amount</label>
+        <input type="text" class="form-control" id="veg_amt" name="veg_amt">
+      </div>
+    <!--CATEGORY -->
+    <div class="col-md-3">
+      <label for="veg_payment" class="form-label">Category</label>
+      <select id="veg_payment" class="form-control" name="veg_payment">
+        <option selected>Not Paid</option>
+        <option>Fully Paid</option>
+        <option>Half Paid</option>
+      </select>
+    </div>
+    <!-- Bill No1 Paid AMount-->
+    <div class="col-md-3">
+        <label for="veg_amt1" class="form-label">Paid Amount</label>
+        <input type="number" class="form-control" id="veg_amt1" name="veg_amt1">
+    </div>
+    <!-- Bill No1 -->
+    <div class="col-md-5">
+      <label for="veg_bill_no" class="form-label">Bill No </label>
+      <input type="text" class="form-control" id="veg_bill_no" name="veg_bill_no">
+    </div>
+<!-- Bill No1 Date-->
+    <div class="col-md-3">
+        <label for="veg_b1_d" class="form-label">Paid Date</label>
+        <input type="date" class="form-control" id="veg_b1_d" name="veg_b1_d">
+    </div>  
+    <!-- Button -->
+      <button type="submit" class="btn btn-primary">ADD</button>
+  </form>
+
+{% endblock %}

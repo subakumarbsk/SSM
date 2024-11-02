@@ -1,0 +1,94 @@
+{% extends 'dynamic/index.html' %}
+{% block content %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'cssfiles/add_form.css'%}">
+
+    <!--code-->
+<div class="container-fluid bg-dark text-danger py-3">
+  <header class="text-center">
+    <h1 class="display-6">Update Vegetable</h1>
+  </header>
+</div>
+<br><br>
+
+  <form action="/update_veg/{{id.id}}"  method="POST" class="form-row">
+    {%csrf_token%}
+    <!-- VEGETABLE Name -->
+    <div class="form-group col-md-6">
+      <label for="veg_name" class="form-label">Veg/Dhal Name</label>
+      <input type="text" value="{{id.veg_name}}" class="form-control" id="veg_name" name="veg_name" >
+    </div>
+
+    <!-- DEALER Name -->
+    <div class="form-group col-md-6">
+      <label for="vd_name" class="form-label">Store</label>
+      <select id="vd_name" class="form-control" name="vd_name">
+        {% for data in dealers %}
+        {% if data.d_category != 'Medicine' %}
+        {% if id.veg_dealer != data.dealer %}
+        <option selected>{{id.veg_dealer}}</option>
+        <option>{{data.dealer}}</option>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+
+    <!--CATEGORY -->
+    <div class="col-md-4">
+      <label for="veg_cat" class="form-label">Category</label>
+      <select id="veg_cat" class="form-control" name="veg_cat">
+        <option selected>{{id.veg_category}}</option>
+        <option>Vegetable</option>
+        <option>Fruit</option>
+        <option>Grain</option>
+      </select>
+    </div>
+    
+    <!-- Dealer Price -->
+    <div class="col-md-2">
+      <label for="veg_up" class="form-label">Unit Price</label>
+      <input type="number" value="{{id.veg_up}}" class="form-control" id="veg_up" name="veg_up">
+    </div>
+    <!-- MRP Price -->
+    <div class="col-md-2">
+      <label for="veg_mrp" class="form-label">MRP</label>
+      <input type="number" value="{{id.veg_mrp}}" class="form-control" id="veg_mrp" name="veg_mrp">
+    </div>
+    <!--GST -->
+    <div class="col-md-2">
+      <label for="veg_gst" class="form-label">GST</label>
+      <select id="veg_gst" class="form-control" name="veg_gst">
+        <option>{{id.veg_gst}}</option>
+        <option>18</option>
+        <option>2.5</option>
+        <option>3</option>
+        <option>5</option>
+      </select>
+    </div>
+    <!-- Quantity -->
+    <div class="col-md-4">
+      <label for="veg_qty" class="form-label">Quantity</label>
+      <input type="number" value="{{id.veg_qty}}" id="veg_qty" class="form-control" name="veg_qty">
+    </div>
+    <!--Unit -->
+    <div class="col-md-4">
+      <label for="veg_unit" class="form-label">Unit</label>
+      <select id="veg_unit" class="form-control" name="veg_unit">
+        <option selected>{{id.veg_unit}}</option>
+        <option>Kg</option>
+        <option>g</option>
+        <option>pcs</option>
+      </select>
+    </div>
+
+    <!-- Percentage -->
+    <div class="col-md-4">
+      <label for="veg_margin" class="form-label">Minimum Margin</label>
+      <input type="number" value="{{id.veg_mar}}" class="form-control" id="veg_margin" name="veg_margin">
+    </div>
+    <!-- Button -->
+    <button type="submit" class="btn btn-primary"> Update </button>
+  </form>
+
+{% endblock %}"

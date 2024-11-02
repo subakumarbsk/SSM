@@ -1,0 +1,12 @@
+
+td input{
+    padding: 0;
+    width: 100px;
+    height: 30px;
+    align-self: center;
+    border: none;
+}
+#myInput{
+    border: solid;
+    border-color: yellow;
+}

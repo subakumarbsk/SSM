@@ -1,0 +1,61 @@
+{% extends 'dynamic/home.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'cssfiles/veg_bill_page.css'%}">
+  <div class="container-fluid bg-dark text-danger py-3">
+    <header class="text-center">
+      <h1 class="display-6">Vegetable & Grain Bills</h1>
+    </header>
+  </div>
+  <br><br>
+  <div class="container-fluid bg-dark text-info py-3">
+    <header class="text-center">
+      <h5 class="display-4" id="total_pending"></h5>
+      <h5 class="display-4" id="total_paid"></h5>
+      <h5 class="display-4" id="total"></h5>
+    </header>
+  </div>
+
+<!-- Bill Summary -->
+<br><br>
+  <div class="container">
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <br>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Sl.No</th>
+          <th>Supplier Name</th>
+          <th>Invoice No</th>
+          <th>Invoice Date</th>
+          <th>Invoice Amount</th>
+          <th>Payment</th>
+          <th>Paid Amount</th>
+          <th>Balance</th>
+          <th>Paid Date</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody id="myTable">
+        {% for veg in veg %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{veg.veg_dealer}}</td>
+          <td>{{veg.veg_invoice}}</td>
+          <td>{{veg.veg_invoice_d}}</td>
+          <td>{{veg.veg_payment}}</td>
+          <td class="t_amt">{{veg.veg_amt}}</td>
+          <td class="p_amt">{{veg.veg_amt1}}</td>
+          <td class="b_amt"></td>
+          <td>{{veg.veg_b1_d}}</td>
+          <th><button id="update" class="btn btn-info"><a href="update_Grain_bill/{{veg.id}}">Update</a></button></th>
+          <th><button id="delete" class="btn btn-danger"><a href="delete_veg_bill/{{veg.id}}">Delete</a></button></th>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+
+{% endblock %}

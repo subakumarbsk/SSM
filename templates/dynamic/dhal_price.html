@@ -1,0 +1,46 @@
+{% extends 'dynamic/index.html' %}
+{% block content %}
+{% load static %}
+
+  <div class="container-fluid bg-dark text-danger py-3">
+    <header class="text-center">
+      <h1 class="display-6">Grain Prices</h1>
+    </header>
+  </div>
+  <div class="container">
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <br>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Sl.No</th>
+          <th>Grain Name</th>
+          <th>Dealer</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>Unit</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody id="myTable">
+        {% for data in veg %}
+        {% if data.veg_category == 'Grain'%}
+        <tr>
+          <td></td>
+          <td>{{data.veg_name}}</td>
+          <td>{{data.veg_up}}</td>
+          <td>{{data.veg_mrp}}</td>
+          <td>{{data.veg_qty}}</td>
+          <td>{{data.veg_unit}}</td>
+          <th><button class="btn btn-info"><a href="update_veg/{{data.id}}">Update</a></button></th>
+          <th><button class="btn btn-danger"><a href="delete_veg&dhal/{{data.id}}">Delete</a></button></th>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+
+{% endblock %}

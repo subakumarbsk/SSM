@@ -1,0 +1,91 @@
+{% extends 'dynamic/index.html' %}
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'cssfiles/order.css'%}">
+  <div class="container-fluid col-md-6">
+    <input class="form-control" id="myInput1" type="text" placeholder="Search..">
+    <br>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Sl.No</th>
+          <th>Product Name</th>
+          <th>Category</th>
+          <th>Dealer</th>
+          <th>Dealer Price</th>
+          <th>MRP</th>
+          <th>Qty</th>
+          <th>Unit</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody id="myTable1">
+        {% for data in pro %}
+        {% if data.pro_cat == 'Stationary'%}
+        
+        <form action="grocery_order" method="POST">
+            {%csrf_token%}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{data.pro_name}}<input class="hide" id="or_name" value="{{data.pro_name}}" type="text" name="or_name"></td>
+                <td>{{data.pro_type}}<input type="text" class="hide" value="{{data.pro_type}}" id="or_cat" name="or_cat"></td>
+                <td>{{data.pro_dealer}}<input type="text" class="hide" value="{{data.pro_dealer}}" id="or_deal" name="or_deal"></td>
+                <td>{{data.pro_up}}<input type="number" class="hide" value="{{data.pro_up}}"  id="or_up" name="or_up"></td>
+                <td>{{data.pro_mrp}}<input type="number" class="hide" value="{{data.pro_mrp}}"  id="or_mrp" name="or_mrp"></td>
+                <td><input id="or_qty" name="or_qty" type="number" required></td>
+                <td id="or_unit">nos</td>
+                <th><button class="btn btn-info">Add</button></th>
+                <th><button class="btn btn-danger"><a href="delete_stationary_order/{{data.id}}">Delete</a></button></th>
+              </tr>
+        </form>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+      <!-- Order Table-->
+      <div class="container col-md-6">
+        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+        <br>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th class="hide">Sl.No</th>
+              <th>Product Name</th>
+              <th>Category</th>
+              <th>Dealer</th>
+              <th>Price</th>
+              <th>Qty</th>
+              <th>Unit</th>
+              <th>Amount</th>
+              <th>Update</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody id="myTable">
+            {% for or in order %}
+            <tr>
+              <td class="hide">{{forloop.counter}}</td>
+              <td>{{or.name}}</td>
+              <td>{{or.cat}}</td>
+              <td>{{or.dealer}}</td>
+              <td class="up">{{or.up}}</td>
+              <td class="qty">{{or.qty}}</td>
+              <td>{{or.unit}}</td>
+              <td>{{or.unit}}</td>
+              <td  class="o_amt"></td>
+              <th><button class="btn btn-info"><a href="update_proicine/{{data.id}}">Update</a></button></th>
+              <th><button class="btn btn-danger"><a href="delete_stationary_order/{{or.id}}">Delete</a></button></th>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th>Total Amount</th>
+                <th id="ord_amt"></th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+{% endblock %}

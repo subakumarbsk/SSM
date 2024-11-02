@@ -1,0 +1,94 @@
+{% extends 'dynamic/index.html' %}
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'cssfiles/order.css'%}">
+  <div class="container-fluid col-md-6">
+    <input class="form-control" id="myInput1" type="text" placeholder="Search..">
+    <br>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Sl.No</th>
+          <th>Medicine Name</th>
+          <th>Combination</th>
+          <th>Dealer</th>
+          <th>Dealer Price</th>
+          <th>MRP</th>
+          <th>Qty</th>
+          <th>Unit</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody id="myTable1">
+        {% for data in medicine %}
+
+        <form action="medicine_order" method="POST">
+            {%csrf_token%}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{data.medicine_name}}<input class="hide" id="or_name" value="{{data.medicine_name}}" type="text" name="or_name"></td>
+                <td>{{data.med_combination}}<input type="text" class="hide" value="{{data.med_combination}}" id="or_cat" name="or_cat"></td>
+                <td>{{data.med_dealer}}<input type="text" class="hide" value="{{data.med_dealer}}" id="or_deal" name="or_deal"></td>
+                <td>{{data.med_up}}<input type="number" class="hide" value="{{data.med_up}}"  id="or_up" name="or_up"></td>
+                <td>{{data.med_mrp}}<input type="number" class="hide" value="{{data.med_mrp}}"  id="or_mrp" name="or_mrp"></td>
+                <td><input id="or_qty" name="or_qty" type="number" required></td>
+                <td><select name="or_unit" id="or_unit">
+                  <option selected>{{data.med_unit}}</option>
+                  <option>Strip</option>
+                  <option>Bottle</option>
+                  <option>nos</option>
+                  <option>Pkg</option>
+                </select></td>
+                <th><button class="btn btn-info">Add</button></th>
+                <th><button class="btn btn-danger"><a href="delete_medicine/{{data.id}}">Delete</a></button></th>
+              </tr>
+        </form>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+      <!-- Order Table-->
+      <div class="container col-md-6">
+        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+        <br>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th class="hide">Sl.No</th>
+              <th>Medicine Name</th>
+              <th>Combination</th>
+              <th>Dealer</th>
+              <th>Price</th>
+              <th>Qty</th>
+              <th>Unit</th>
+              <th>Amount</th>
+              <th>Update</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody id="myTable">
+            {% for or in order %}
+            <tr>
+              <td class="hide">{{forloop.counter}}</td>
+              <td>{{or.name}}</td>
+              <td>{{or.cat}}</td>
+              <td>{{or.dealer}}</td>
+              <td class="up">{{or.up}}</td>
+              <td class="qty">{{or.qty}}</td>
+              <td>{{or.unit}}</td>
+              <td class="o_amt"></td>
+              <th><button class="btn btn-info"><a href="update_medicine/{{data.id}}">Update</a></button></th>
+              <th><button class="btn btn-danger"><a href="delete_med_order/{{or.id}}">Delete</a></button></th>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th>Total Amount</th>
+                <th id="ord_amt"></th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'dynamic/index.html' %}
+{% block content %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'cssfiles/add_form.css'%}">
+
+    <!--code-->
+<div class="container-fluid bg-dark text-danger py-3">
+  <header class="text-center">
+    <h1 class="display-6">Add Medicine Bill </h1>
+  </header>
+</div>
+<br><br>
+
+  <form action=""  method="POST" class="form-row">
+    {%csrf_token%}
+
+    <!-- DEALER Name -->
+    <div class="form-group col-md-12">
+      <label for="med_dealer" class="form-label">Pharma</label>
+      <select id="med_dealer" class="form-control" name="med_dealer">
+        {% for data in dealers %}
+        {% if data.d_category == 'Medicine' %}
+        <option selected>{{data.dealer}}</option>
+        {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+    <!-- Invoice No-->
+    <div class="col-md-3">
+        <label for="med_invoice" class="form-label">Invoice No</label>
+        <input type="text" class="form-control" id="med_invoice" name="med_invoice">
+      </div>
+    <!-- Invoice Date-->
+    <div class="col-md-3">
+        <label for="med_invoice_d" class="form-label">Invoice Date</label>
+        <input type="date" class="form-control" id="med_invoice_d" name="med_invoice_d">
+      </div>     
+      <!-- Invoice Amount-->
+    <div class="col-md-3">
+        <label for="med_amt" class="form-label">Invoice Amount</label>
+        <input type="text" class="form-control" id="med_amt" name="med_amt">
+      </div>
+    <!--CATEGORY -->
+    <div class="col-md-3">
+      <label for="med_payment" class="form-label">Category</label>
+      <select id="med_payment" class="form-control" name="med_payment">
+        <option selected>Not Paid</option>
+        <option>Fully Paid</option>
+        <option>Half Paid</option>
+      </select>
+    </div>
+    <!-- Bill No1 Paid AMount-->
+    <div class="col-md-3">
+        <label for="med_amt1" class="form-label">Invoice No</label>
+        <input type="number" class="form-control" id="med_amt1" name="med_amt1">
+    </div>
+    <!-- Bill No1 -->
+    <div class="col-md-5">
+      <label for="med_bill_no" class="form-label">Bill No 1 </label>
+      <input type="text" class="form-control" id="med_bill_no" name="med_bill_no">
+    </div>
+<!-- Bill No1 Date-->
+    <div class="col-md-3">
+        <label for="med_b1_d" class="form-label">Bill No1 Date</label>
+        <input type="date" class="form-control" id="med_b1_d" name="med_b1_d">
+    </div>  
+    <!-- Bill No2 Paid AMount-->
+    <div class="col-md-3">
+        <label for="med_amt2" class="form-label">Amount 2 ( OPTIONAL )</label>
+        <input type="number" class="form-control" id="med_amt2" name="med_amt2">
+    </div>
+    <!-- Bill No2 -->
+    <div class="col-md-5">
+        <label for="med_bill_no2" class="form-label">Bill No 2 ( OPTIONAL )</label>
+        <input type="text" class="form-control" id="med_bill_no2" name="med_bill_no2">
+      </div>
+    <!-- Bill No1 Date-->
+    <div class="col-md-3">
+        <label for="med_b2_d" class="form-label">Bill No2 Date( OPTIONAL )</label>
+        <input type="date" class="form-control" id="med_b2_d" name="med_b2_d">
+    </div> 
+    
+    
+    <!-- Button -->
+      <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+{% endblock %}

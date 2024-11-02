@@ -1,0 +1,44 @@
+{% extends 'dynamic/index.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'cssfiles/add_form.css'%}">
+
+<!--code-->
+<div class="container-fluid bg-dark text-danger py-3">
+    <header class="text-center">
+        <h1 class="display-6">Add Medicine Bill </h1>
+    </header>
+</div>
+<br><br>
+
+<form action="" method="POST" class="form-row">
+    {%csrf_token%}
+
+    <!-- DEALER Name -->
+    <div class="form-group col-md-12">
+        <label for="sim_name" class="form-label">Dealer Name</label>
+        <select id="sim_name" class="form-control" name="sim_name">
+            <option selected>Jio</option>
+            <option>Vi</option>
+            <option>Airtel</option>
+            <option>Multi</option>
+        </select>
+    </div>
+    <!-- Bill No1 Paid AMount-->
+    <div class="col-md-4">
+        <label for="ec_paid" class="form-label">Paid Amount</label>
+        <input type="number" class="form-control" id="ec_paid" name="ec_paid">
+    </div>
+    <!-- Bill No1 Date-->
+    <div class="col-md-4">
+        <label for="ec_b1_d" class="form-label">Paid Date</label>
+        <input type="date" class="form-control" id="ec_b1_d" name="ec_b1_d">
+    </div>
+
+
+
+    <!-- Button -->
+    <button type="submit" class="btn btn-primary">ADD</button>
+</form>
+
+{% endblock %}

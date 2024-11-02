@@ -1,0 +1,31 @@
+{% extends 'dynamic/index.html' %}
+{% block content %}
+{% load static %}
+
+  <div class="container">
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <br>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Sl.No</th>
+          <th>Supplier Name</th>
+          <th>GST No</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+      <tbody id="myTable">
+        {% for data in dealers %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{data.dealer}}</td>
+          <td>{{data.gst_no}}</td>
+          <td>{{data.d_category}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  
+  
+{% endblock %}

@@ -1,0 +1,16 @@
+button{
+    margin: 30px;
+    width: 150px;
+    height: 50px;
+    padding: 5px;
+}
+#bill_cat:hover{
+    font-size: 22px;
+    width: 200px;
+}
+#update,#delete{
+    margin: 0;
+    padding: 5px;
+    width: 80px;
+    height: 50px;
+}

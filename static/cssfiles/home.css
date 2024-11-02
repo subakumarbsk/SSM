@@ -1,0 +1,19 @@
+
+img{
+    width: 100px;
+    height: 100px;
+}
+button{
+    width:100px ;
+    height: 40px;
+}
+.class{
+    display: inline-flex;
+    width: 30%;
+    height: 150px;
+}
+#title{
+    color: red;
+    flex: right;
+    width: 70%;
+}

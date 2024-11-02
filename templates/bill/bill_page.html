@@ -1,0 +1,170 @@
+{% extends 'dynamic/home.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'cssfiles/bill_page.css'%}">
+  <div class="container-fluid bg-dark text-danger py-3">
+    <header class="text-center">
+      <h1 class="display-6">Accounts</h1>
+    </header>
+  </div>
+  <br><br>
+  <div class="container-fluid">
+    <header class="text-center">
+        <button id="bill_cat" type="button" class="btn btn-danger"><a href="Medical_bill">Medical Bills</a></button>
+        <button id="bill_cat" type="button" class="btn btn-info"><a href="product_bill">Product Bills</a></button>
+        <button id="bill_cat" type="button" class="btn btn-warning"><a href="grain_bill">Grain Bill</a></button>
+    </header>
+  </div>
+<!-- Bill Summary -->
+
+  <div class="container-fluid bg-dark text-danger py-3">
+    <header class="text-center">
+      <h1 class="display-6">Pending Bills</h1>
+    </header>
+  </div>
+  <div class="container-fluid bg-dark text-info py-3">
+    <header class="text-center">
+      <h5 class="display-4" id="total_pending"></h5>
+      <h5 class="display-4" id="total_paid"></h5>
+      <h5 class="display-4" id="total"></h5>
+    </header>
+  </div>
+  <div class="container">
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <br>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Sl.No</th>
+          <th>Supplier Name</th>
+          <th>Invoice No</th>
+          <th>Invoice Date</th>
+          <th>Payment</th>
+          <th>Invoice Amount</th>
+          <th>Paid Amount</th>
+          <th>Balance</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody id="myTable">
+        {% for med in med %}
+        {% if med.med_payment != 'Fully Paid'%}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{med.med_dealer}}</td>
+          <td>{{med.med_invoice}}</td>
+          <td>{{med.med_invoice_d}}</td>
+          <td>{{med.med_payment}}</td>
+          <td class="t_amt">{{med.med_amt}}</td>
+          <td class="p_amt">{{med.med_amt1}}</td>
+          <td class="b_amt"></td>
+          <th><button id="update" class="btn btn-info"><a href="update_medicine_bill/{{med.id}}">Update</a></button></th>
+          <th><button id="delete" class="btn btn-danger"><a href="delete_medicine_bill/{{med.id}}">Delete</a></button></th>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        {% for veg in veg %}
+        {% if veg.veg_payment != 'Fully Paid'%}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{veg.veg_dealer}}</td>
+          <td>{{veg.veg_invoice}}</td>
+          <td>{{veg.veg_invoice_d}}</td>
+          <td>{{veg.veg_payment}}</td>
+          <td class="t_amt">{{veg.veg_amt}}</td>
+          <td class="p_amt">{{veg.veg_amt1}}</td>
+          <td class="b_amt"></td>
+          <th><button id="update" class="btn btn-info"><a href="update_Grain_bill/{{veg.id}}">Update</a></button></th>
+          <th><button id="delete" class="btn btn-danger"><a href="delete_veg_bill/{{veg.id}}">Delete</a></button></th>
+        </tr>
+        {% endif %}
+        {% endfor %}
+
+        {% for pro in pro %}
+        {% if pro.pro_payment != 'Fully Paid'%}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{pro.pro_dealer}}</td>
+          <td>{{pro.pro_invoice}}</td>
+          <td>{{pro.pro_invoice_d}}</td>
+          <td>{{pro.pro_payment}}</td>
+          <td class="t_amt">{{pro.pro_amt}}</td>
+          <td class="p_amt">{{pro.pro_amt1}}</td>
+          <td class="b_amt"></td>
+          <th><button id="update" class="btn btn-info"><a href="update_product_bill/{{pro.id}}">Update</a></button></th>
+          <th><button id="delete" class="btn btn-danger"><a href="delete_product_bill/{{pro.id}}">Delete</a></button></th>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        {% for med in med %}
+        {% if med.med_payment == 'Fully Paid'%}
+        <tr class="hide">
+          <td>{{forloop.counter}}</td>
+          <td>{{med.med_dealer}}</td>
+          <td>{{med.med_invoice}}</td>
+          <td>{{med.med_invoice_d}}</td>
+          <td>{{med.med_payment}}</td>
+          <td class="t_amt">{{med.med_amt}}</td>
+          <td class="p_amt">{{med.med_amt1}}</td>
+          <td class="b_amt"></td>
+          <th><button id="update" class="btn btn-info"><a href="update_medicine_bill/{{med.id}}">Update</a></button></th>
+          <th><button id="delete" class="btn btn-danger"><a href="delete_medicine_bill/{{med.id}}">Delete</a></button></th>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        {% for veg in veg %}
+        {% if veg.veg_payment == 'Fully Paid'%}
+        <tr class="hide">
+          <td>{{forloop.counter}}</td>
+          <td>{{veg.veg_dealer}}</td>
+          <td>{{veg.veg_invoice}}</td>
+          <td>{{veg.veg_invoice_d}}</td>
+          <td>{{veg.veg_payment}}</td>
+          <td class="t_amt">{{veg.veg_amt}}</td>
+          <td class="p_amt">{{veg.veg_amt1}}</td>
+          <td class="b_amt"></td>
+          <th><button id="update" class="btn btn-info"><a href="update_Grain_bill/{{veg.id}}">Update</a></button></th>
+          <th><button id="delete" class="btn btn-danger"><a href="delete_veg_bill/{{veg.id}}">Delete</a></button></th>
+        </tr>
+        {% endif %}
+        {% endfor %}
+
+        {% for pro in pro %}
+        {% if pro.pro_payment == 'Fully Paid'%}
+        <tr class="hide">
+          <td>{{forloop.counter}}</td>
+          <td>{{pro.pro_dealer}}</td>
+          <td>{{pro.pro_invoice}}</td>
+          <td>{{pro.pro_invoice_d}}</td>
+          <td>{{pro.pro_payment}}</td>
+          <td class="t_amt">{{pro.pro_amt}}</td>
+          <td class="p_amt">{{pro.pro_amt1}}</td>
+          <td class="b_amt"></td>
+          <th><button id="update" class="btn btn-info"><a href="update_product_bill/{{pro.id}}">Update</a></button></th>
+          <th><button id="delete" class="btn btn-danger"><a href="delete_product_bill/{{pro.id}}">Delete</a></button></th>
+        </tr>
+        {% endif %}
+        {% endfor %}
+
+        {% for ec in ec %}
+        <tr class="hide">
+          <td>{{forloop.counter}}</td>
+          <td>{{ec.sim_name}}</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td class="t_amt">{{ec.ec_paid}}</td>
+          <td class="p_amt">{{ec.ec_paid}}</td>
+          <td class="b_amt"></td>
+          <th><button id="update" class="btn btn-info"><a href="#">Update</a></button></th>
+          <th><button id="delete" class="btn btn-danger"><a href="#">Delete</a></button></th>
+        </tr>
+
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+
+{% endblock %}

@@ -1,0 +1,11 @@
+.header{
+    margin-left: 0px;
+    margin-right: 0px;
+    border: 1px solid gray;
+}
+p{
+    font-size: 30px;
+}
+li:active{
+    background-color: red;
+}
